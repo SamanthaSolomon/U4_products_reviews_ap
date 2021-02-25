@@ -77,3 +77,14 @@ Migrating to AddProductIdToReviews (20210225134900)
   [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
   [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
   [1m[36mReview Load (1.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1 /* loading for inspect */ LIMIT $2[0m  [["product_id", 1], ["LIMIT", 11]]
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mReview Create (1.9ms)[0m  [1m[32mINSERT INTO "reviews" ("title", "content", "author", "created_at", "updated_at", "product_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "first review"], ["content", "not a bad product"], ["author", "Terminator 2"], ["created_at", "2021-02-25 13:54:17.589549"], ["updated_at", "2021-02-25 13:54:17.589549"], ["product_id", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mReview Create (0.8ms)[0m  [1m[32mINSERT INTO "reviews" ("title", "author", "created_at", "updated_at", "product_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "middling product I'd say"], ["author", "Chingy Right Thurr"], ["created_at", "2021-02-25 13:54:45.633731"], ["updated_at", "2021-02-25 13:54:45.633731"], ["product_id", 1]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReview Load (1.0ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  [1m[36mReview Load (7.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
