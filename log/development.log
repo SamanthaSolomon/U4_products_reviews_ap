@@ -105,3 +105,100 @@ Processing by ReviewsController#index as HTML
 Completed 200 OK in 11ms (Views: 8.0ms | ActiveRecord: 0.4ms | Allocations: 939)
 
 
+Started GET "/products" for ::1 at 2021-02-25 09:17:46 -0500
+Processing by ProductsController#index as */*
+  Parameters: {"date"=>"2021-02-18", "average_price"=>"-1.2", "product"=>{}}
+  [1m[36mProduct Load (18.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/controllers/products_controller.rb:8:in `index'
+Completed 200 OK in 41ms (Views: 12.9ms | ActiveRecord: 34.2ms | Allocations: 4298)
+
+
+Started GET "/reviews" for ::1 at 2021-02-25 09:18:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/reviews"):
+  
+Started GET "/review" for ::1 at 2021-02-25 09:18:02 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/review"):
+  
+Started GET "/products/1/reviews" for ::1 at 2021-02-25 09:18:42 -0500
+Processing by ReviewsController#index as */*
+  Parameters: {"date"=>"2021-02-18", "average_price"=>"-1.2", "product_id"=>"1", "review"=>{}}
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  ↳ app/controllers/reviews_controller.rb:8:in `index'
+Completed 200 OK in 39ms (Views: 24.0ms | ActiveRecord: 21.2ms | Allocations: 3742)
+
+
+Started POST "/products/1/reviews" for ::1 at 2021-02-25 09:20:14 -0500
+Processing by ReviewsController#create as */*
+  Parameters: {"id"=>1, "title"=>"first review", "content"=>"this product is worse than covid 19", "author"=>"Terminator 2", "product_id"=>"1", "review"=>{"id"=>1, "title"=>"first review", "content"=>"this product is worse than covid 19", "author"=>"Terminator 2"}}
+[31mUnpermitted parameter: :id[0m
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms | Allocations: 2272)
+
+
+  
+NameError (undefined local variable or method `review' for #<ReviewsController:0x000000000072d8>
+Did you mean?  @review):
+  
+app/controllers/reviews_controller.rb:15:in `create'
+Started GET "/products/1/reviews" for ::1 at 2021-02-25 09:20:57 -0500
+Processing by ReviewsController#index as */*
+  Parameters: {"id"=>1, "title"=>"first review", "content"=>"this product is worse than covid 19", "author"=>"Terminator 2", "product_id"=>"1", "review"=>{"id"=>1, "title"=>"first review", "content"=>"this product is worse than covid 19", "author"=>"Terminator 2"}}
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  ↳ app/controllers/reviews_controller.rb:8:in `index'
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.5ms | Allocations: 922)
+
+
+Started POST "/products/1/reviews" for ::1 at 2021-02-25 09:22:06 -0500
+Processing by ReviewsController#create as */*
+  Parameters: {"id"=>3, "title"=>"some thoughts", "content"=>"pick a peck of pickeled peppers", "author"=>"some guy", "product_id"=>"1", "review"=>{"id"=>3, "title"=>"some thoughts", "content"=>"pick a peck of pickeled peppers", "author"=>"some guy", "product_id"=>"1"}}
+[31mUnpermitted parameters: :id, :product_id[0m
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 2091)
+
+
+  
+NameError (undefined local variable or method `review' for #<ReviewsController:0x00000000007418>
+Did you mean?  @review):
+  
+app/controllers/reviews_controller.rb:15:in `create'
+Started POST "/products/1/reviews" for ::1 at 2021-02-25 09:22:26 -0500
+Processing by ReviewsController#create as */*
+  Parameters: {"id"=>3, "title"=>"some thoughts", "content"=>"pick a peck of pickeled peppers", "author"=>"some guy", "product_id"=>"1", "review"=>{"id"=>3, "title"=>"some thoughts", "content"=>"pick a peck of pickeled peppers", "author"=>"some guy", "product_id"=>"1"}}
+[31mUnpermitted parameters: :id, :product_id[0m
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 2099)
+
+
+  
+NameError (undefined local variable or method `review' for #<ReviewsController:0x000000000074e0>
+Did you mean?  @review):
+  
+app/controllers/reviews_controller.rb:15:in `create'
+Started POST "/reviews" for ::1 at 2021-02-25 09:23:03 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/reviews"):
+  
+Started POST "/products/3/reviews" for ::1 at 2021-02-25 09:24:40 -0500
+Processing by ReviewsController#create as */*
+  Parameters: {"title"=>"some thoughts", "content"=>"pick a peck of pickeled peppers", "author"=>"some guy", "product_id"=>"3", "review"=>{"title"=>"some thoughts", "content"=>"pick a peck of pickeled peppers", "author"=>"some guy"}}
+Completed 500 Internal Server Error in 109ms (ActiveRecord: 0.0ms | Allocations: 2061)
+
+
+  
+NameError (undefined local variable or method `review' for #<ReviewsController:0x000000000075f8>
+Did you mean?  @review):
+  
+app/controllers/reviews_controller.rb:15:in `create'
+Started POST "/products/3/reviews" for ::1 at 2021-02-25 09:25:27 -0500
+Processing by ReviewsController#create as */*
+  Parameters: {"title"=>"some thoughts", "content"=>"pick a peck of pickeled peppers", "author"=>"some guy", "product_id"=>"3", "review"=>{"title"=>"some thoughts", "content"=>"pick a peck of pickeled peppers", "author"=>"some guy"}}
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/reviews_controller.rb:17:in `create'
+  [1m[36mProduct Load (1.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:17:in `create'
+  [1m[36mReview Create (2.0ms)[0m  [1m[32mINSERT INTO "reviews" ("title", "content", "author", "created_at", "updated_at", "product_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "some thoughts"], ["content", "pick a peck of pickeled peppers"], ["author", "some guy"], ["created_at", "2021-02-25 14:25:27.704409"], ["updated_at", "2021-02-25 14:25:27.704409"], ["product_id", 3]]
+  ↳ app/controllers/reviews_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/reviews_controller.rb:17:in `create'
+Completed 201 Created in 313ms (Views: 0.6ms | ActiveRecord: 162.4ms | Allocations: 11102)
+
+
