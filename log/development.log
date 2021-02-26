@@ -202,3 +202,80 @@ Processing by ReviewsController#create as */*
 Completed 201 Created in 313ms (Views: 0.6ms | ActiveRecord: 162.4ms | Allocations: 11102)
 
 
+Started PUT "/reviews/3" for ::1 at 2021-02-25 09:30:25 -0500
+Processing by ReviewsController#update as */*
+  Parameters: {"title"=>"some thoughts", "content"=>"pick a peck of pickeled peppers", "author"=>"some gal", "id"=>"3", "review"=>{"title"=>"some thoughts", "content"=>"pick a peck of pickeled peppers", "author"=>"some gal"}}
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:41:in `set_review'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/reviews_controller.rb:26:in `update'
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:26:in `update'
+  [1m[36mReview Update (3.8ms)[0m  [1m[33mUPDATE "reviews" SET "author" = $1, "updated_at" = $2 WHERE "reviews"."id" = $3[0m  [["author", "some gal"], ["updated_at", "2021-02-25 14:30:25.726124"], ["id", 3]]
+  ↳ app/controllers/reviews_controller.rb:26:in `update'
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/reviews_controller.rb:26:in `update'
+Completed 200 OK in 77ms (Views: 0.9ms | ActiveRecord: 42.2ms | Allocations: 10054)
+
+
+Started DELETE "/reviews/2" for ::1 at 2021-02-25 09:31:12 -0500
+Processing by ReviewsController#destroy as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mReview Load (3.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:41:in `set_review'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/reviews_controller.rb:35:in `destroy'
+  [1m[36mReview Destroy (0.8ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/reviews_controller.rb:35:in `destroy'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/reviews_controller.rb:35:in `destroy'
+Completed 204 No Content in 24ms (ActiveRecord: 7.5ms | Allocations: 1845)
+
+
+Started GET "/reviews" for ::1 at 2021-02-25 09:31:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/reviews"):
+  
+Started GET "/reviews/1" for ::1 at 2021-02-25 09:31:27 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/reviews/1"):
+  
+Started GET "/reviews/2" for ::1 at 2021-02-25 09:31:37 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/reviews/2"):
+  
+Started GET "/reviews/2" for ::1 at 2021-02-25 09:41:09 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/reviews/2"):
+  
+Started GET "/products/1/reviews" for ::1 at 2021-02-25 09:41:31 -0500
+Processing by ReviewsController#index as */*
+  Parameters: {"product_id"=>"1"}
+  [1m[36mReview Load (7.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  ↳ app/controllers/reviews_controller.rb:8:in `index'
+Completed 200 OK in 707ms (Views: 704.2ms | ActiveRecord: 301.8ms | Allocations: 2968)
+
+
+Started POST "/products/1/reviews" for ::1 at 2021-02-25 09:42:41 -0500
+Processing by ReviewsController#create as */*
+  Parameters: {"id"=>4, "title"=>"first review", "content"=>"OMG this is worst", "author"=>"Terminator 2", "product_id"=>"1", "review"=>{"id"=>4, "title"=>"first review", "content"=>"OMG this is worst", "author"=>"Terminator 2"}}
+[31mUnpermitted parameter: :id[0m
+  [1m[36mTRANSACTION (46.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/reviews_controller.rb:17:in `create'
+  [1m[36mProduct Load (2.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:17:in `create'
+  [1m[36mReview Create (37.5ms)[0m  [1m[32mINSERT INTO "reviews" ("title", "content", "author", "created_at", "updated_at", "product_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "first review"], ["content", "OMG this is worst"], ["author", "Terminator 2"], ["created_at", "2021-02-25 14:42:41.998040"], ["updated_at", "2021-02-25 14:42:41.998040"], ["product_id", 1]]
+  ↳ app/controllers/reviews_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (6.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/reviews_controller.rb:17:in `create'
+Completed 201 Created in 179ms (Views: 1.4ms | ActiveRecord: 93.3ms | Allocations: 2795)
+
+
+Started GET "/products/1/reviews" for ::1 at 2021-02-25 09:42:55 -0500
+Processing by ReviewsController#index as */*
+  Parameters: {"id"=>4, "title"=>"first review", "content"=>"OMG this is worst", "author"=>"Terminator 2", "product_id"=>"1", "review"=>{"id"=>4, "title"=>"first review", "content"=>"OMG this is worst", "author"=>"Terminator 2"}}
+  [1m[36mReview Load (3.0ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  ↳ app/controllers/reviews_controller.rb:8:in `index'
+Completed 200 OK in 122ms (Views: 118.0ms | ActiveRecord: 3.0ms | Allocations: 928)
+
+
